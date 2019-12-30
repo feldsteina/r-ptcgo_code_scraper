@@ -1,8 +1,8 @@
+from google.cloud import vision
+from google.protobuf.json_format import MessageToJson
 import json
 import requests
 import re
-import api_keys
-import praw
 import pyautogui as auto
 import keyboard
 from time import sleep
@@ -27,8 +27,6 @@ def ptcgo_auto_redeem(codes):
 def detect_text_uri(uri):
     """Detects text in the file located in Google Cloud Storage or on the Web.
     """
-    from google.cloud import vision
-    from google.protobuf.json_format import MessageToJson
 
     client = vision.ImageAnnotatorClient()
     image = vision.types.Image()
@@ -49,66 +47,78 @@ def detect_text_uri(uri):
     find_list = r.findall(parsed)
 
     code_list = []
+
     for item in find_list:
         if item not in code_list:
             code_list.append(item)
 
-    # for item in code_list:
-    #     print(item)
+    for item in code_list:
+        print(item)
 
     ptcgo_auto_redeem(code_list)
 
 
-mrp = 10000
+# mrp = 10000
 
 
-def reddit_feed():
-    global mrp
+def reddit_feed(post_time):
+    # global mrp
     r = re.compile(
         "\\S*i\\.redd\\.it\\S*|\\S*i\\.imgur\\.com\\S*", re.MULTILINE)
 
-    reddit = praw.Reddit(client_id=api_keys.client_id,
-                         client_secret=api_keys.client_secret,
-                         user_agent=api_keys.user_agent)
+    response = requests.get(
+        "https://www.reddit.com/r/ptcgo/new.json?sort=new&limit=150",
+        headers={"User-agent": "scraperbot"}
+    )
 
-    new_posts = reddit.subreddit('ptcgo').new(limit=10)
+    json_data = json.loads(response.text)
 
-    post_urls = []
+    url_list = []
 
-    for items in new_posts:
-        if (items.created_utc > mrp):
-            print(f"{items.created_utc}  >  {mrp}")
-            post_urls.append(items.url)
+    post_data = json_data["data"]["children"]
+
+    print("////////////////////////")
+
+    for items in post_data:
+        if items["data"]["created_utc"] > post_time:
+            url_list.append(items["data"]["url"])
+            print(f'{items["data"]["created_utc"]} > {post_time}')
         else:
             break
-    print("------------------------")
-
-    i = 0
-
-    for items in new_posts:
-        if i < 1:
-            print(items.created_utc)
-            mrp = items.created_utc
-            print(mrp)
-        else:
-            break
-        i = i + 1
 
     print("========================")
 
-    image_urls = [x for x in post_urls if r.findall(x)]
+    for items in url_list:
+        print(items)
 
-    # for items in image_urls:
-    #     detect_text_uri(items)
+    print("========================")
 
-    return mrp
+    for items in post_data:
+        if items["data"]["created_utc"] > post_time:
+            print(items["data"]["created_utc"])
+            post_time = items["data"]["created_utc"]
+            print(post_time)
+        else:
+            break
+
+    print("========================")
+
+    image_urls = [x for x in url_list if r.findall(x)]
+
+    for items in image_urls:
+        print(items)
+        detect_text_uri(items)
+
+    print("========================")
+
+    return post_time
 
 
 def main():
     try:
-        # mrp = "asdf"
+        mrp = 10000
         while(True):
-            reddit_feed()
+            mrp = reddit_feed(mrp)
             sleep(5)
     except KeyboardInterrupt:
         pass
