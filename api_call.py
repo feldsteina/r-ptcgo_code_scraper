@@ -136,8 +136,13 @@ def main():
     try:
         mrp = 10000
         while(True):
+            auto.moveTo(720, 25, duration=0.1)
+            auto.click()
+            sleep(3.5)
             mrp = reddit_feed(mrp)
-            sleep(5)
+            auto.moveTo(630, 25, duration=0.1)
+            auto.click()
+            sleep(3.5)
     except KeyboardInterrupt:
         pass
 
