@@ -9,19 +9,42 @@ from time import sleep
 
 
 def ptcgo_auto_redeem(codes):
-    if len(codes) <= 10:
+    if len(codes) <= 5:
         for item in codes:
-            auto.moveTo(532, 892, duration=0.1)
+            auto.moveTo(530, 890, duration=0.1)
             auto.click()
             sleep(0.2)
-            item_keys = [char for char in item]
             keyboard.write(item)
             sleep(0.5)
-            auto.moveTo(532, 982, duration=0.1)
+            auto.moveTo(530, 980, duration=0.1)
             auto.click()
             sleep(0.2)
-        # print(auto.position())
-        return 0
+        auto.moveTo(1190, 980, duration=0.1)
+        auto.click()
+        sleep(0.5)
+        auto.moveTo(820, 980, duration=0.1)
+        auto.click()
+        sleep(3)
+    else:
+        i = 0
+        while i < len(codes):
+            while ((i+1) % 6 != 0) & (i < len(codes)):
+                auto.moveTo(530, 890, duration=0.1)
+                auto.click()
+                sleep(0.2)
+                keyboard.write(codes[i])
+                sleep(0.2)
+                auto.moveTo(530, 980, duration=0.1)
+                auto.click()
+                sleep(0.2)
+                i += 1
+            auto.moveTo(1190, 980, duration=0.1)
+            auto.click()
+            sleep(0.5)
+            auto.moveTo(820, 980, duration=0.1)
+            auto.click()
+            sleep(0.5)
+            i += 1
 
 
 def detect_text_uri(uri):
@@ -38,7 +61,6 @@ def detect_text_uri(uri):
     serialized = MessageToJson(response)
 
     parsed = json.loads(serialized)
-    # parsed = json.loads(serialized)
 
     parsed = json.dumps(parsed, indent=4, sort_keys=True)
 
@@ -58,16 +80,12 @@ def detect_text_uri(uri):
     ptcgo_auto_redeem(code_list)
 
 
-# mrp = 10000
-
-
 def reddit_feed(post_time):
-    # global mrp
     r = re.compile(
         "\\S*i\\.redd\\.it\\S*|\\S*i\\.imgur\\.com\\S*", re.MULTILINE)
 
     response = requests.get(
-        "https://www.reddit.com/r/ptcgo/new.json?sort=new&limit=150",
+        "https://www.reddit.com/r/ptcgo/new.json?sort=new&limit=10",
         headers={"User-agent": "scraperbot"}
     )
 
