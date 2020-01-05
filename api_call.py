@@ -6,6 +6,7 @@ import re
 import pyautogui as auto
 import keyboard
 from time import sleep
+import api_keys
 
 
 def ptcgo_auto_redeem(codes):
@@ -86,7 +87,7 @@ def reddit_feed(post_time):
 
     response = requests.get(
         "https://www.reddit.com/r/ptcgo/new.json?sort=new&limit=10",
-        headers={"User-agent": "scraperbot"}
+        headers={"User-agent": api_keys.user_agent}
     )
 
     json_data = json.loads(response.text)
