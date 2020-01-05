@@ -87,7 +87,7 @@ def reddit_feed(post_time):
 
     response = requests.get(
         "https://www.reddit.com/r/ptcgo/new.json?sort=new&limit=10",
-        headers={"User-agent": api_keys.user_agent}
+        headers=api_keys.headers
     )
 
     json_data = json.loads(response.text)
@@ -139,11 +139,11 @@ def main():
         while(True):
             auto.moveTo(720, 25, duration=0.1)
             auto.click()
-            sleep(3.5)
+            sleep(5)
             mrp = reddit_feed(mrp)
             auto.moveTo(630, 25, duration=0.1)
             auto.click()
-            sleep(3.5)
+            sleep(5)
     except KeyboardInterrupt:
         pass
 
