@@ -2,12 +2,10 @@ from google.cloud import vision
 from google.protobuf.json_format import MessageToJson
 import json
 import requests
-import requests.auth
 import re
 import pyautogui as auto
 import keyboard
 from time import sleep
-from api_keys import client_secret, user_agent
 
 
 def ptcgo_auto_redeem(codes):
@@ -88,8 +86,7 @@ def reddit_feed(post_time):
 
     response = requests.get(
         "https://www.reddit.com/r/ptcgo/new.json?sort=new&limit=10",
-        headers={"Authorization": f"bearer {client_secret}",
-                 "User-Agent": user_agent}
+        headers={"User-agent": "scraperbot"}
     )
 
     json_data = json.loads(response.text)
@@ -141,11 +138,11 @@ def main():
         while(True):
             auto.moveTo(720, 25, duration=0.1)
             auto.click()
+            sleep(3.5)
             mrp = reddit_feed(mrp)
-            sleep(3)
             auto.moveTo(630, 25, duration=0.1)
             auto.click()
-            sleep(3)
+            sleep(3.5)
     except KeyboardInterrupt:
         pass
 
