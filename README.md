@@ -1,3 +1,5 @@
+Project is currently on hold, I'm fairly certain I hit a rate limit on Reddit's API and am unable to retrieve posts anymore.
+
 # Purpose:
 
 1. Gathers image link posts from reddit.com/r/ptcgo.
@@ -12,7 +14,7 @@ Requires Google Cloud Vision API access, which uses a json file and system envir
 
 First 1000 queries per month are free. Still unsure if this is per calendar month or every 30 days, etc.
 
-Requires Reddit ~~API access for the PRAW package~~ json URL and headers provided in code, no key needed.
+Requires Reddit json URL and headers provided in code
 
 Free, with rate limit of 30 per minute. Not an issue for this program using current delays.
 
