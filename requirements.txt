@@ -13,7 +13,7 @@ idna==2.8
 keyboard==0.13.4
 MouseInfo==0.1.2
 Pillow==12.3.0
-pip==19.3.1
+pip==26.1.2
 prawcore==1.0.1
 protobuf==3.18.3
 protobuf3-to-dict==0.1.5
