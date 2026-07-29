@@ -15,7 +15,7 @@ MouseInfo==0.1.2
 Pillow==12.3.0
 pip==19.3.1
 prawcore==1.0.1
-protobuf==3.18.3
+protobuf==5.29.6
 protobuf3-to-dict==0.1.5
 pyasn1==0.6.4
 pyasn1-modules==0.2.7
