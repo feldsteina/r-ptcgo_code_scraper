@@ -9,7 +9,7 @@ google-cloud-vision==0.41.0
 google-resumable-media==0.5.0
 googleapis-common-protos==1.6.0
 grpcio==1.26.0
-idna==2.8
+idna==3.15
 keyboard==0.13.4
 MouseInfo==0.1.2
 Pillow==12.3.0
