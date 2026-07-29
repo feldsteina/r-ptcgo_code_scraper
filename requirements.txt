@@ -1,5 +1,5 @@
 cachetools==4.0.0
-certifi==2019.11.28
+certifi==2022.12.7
 chardet==3.0.4
 google-api-core==1.15.0
 google-auth==1.10.0
@@ -15,7 +15,7 @@ MouseInfo==0.1.2
 Pillow==6.2.1
 pip==21.1
 prawcore==1.0.1
-protobuf==3.11.2
+protobuf==3.18.3
 protobuf3-to-dict==0.1.5
 pyasn1==0.4.8
 pyasn1-modules==0.2.7
@@ -29,10 +29,10 @@ PyTweening==1.0.3
 pytz==2019.3
 requests==2.22.0
 rsa==4.0
-setuptools==42.0.2.post20191203
+setuptools==65.5.1
 six==1.13.0
 update-checker==0.16
 urllib3==1.25.7
 websocket-client==0.57.0
-wheel==0.33.6
+wheel==0.38.1
 wincertstore==0.2
