@@ -12,7 +12,7 @@ grpcio==1.53.2
 idna==3.15
 keyboard==0.13.4
 MouseInfo==0.1.2
-Pillow==12.3.0
+Pillow==13.0.0
 pip==26.1.2
 prawcore==1.0.1
 protobuf==5.29.6
