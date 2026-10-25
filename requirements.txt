@@ -29,7 +29,7 @@ PyTweening==1.0.3
 pytz==2019.3
 requests==2.33.0
 rsa==4.7
-setuptools==83.0.0
+setuptools==84.1.0
 six==1.13.0
 update-checker==0.16
 urllib3==2.7.0
