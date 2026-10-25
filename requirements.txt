@@ -32,7 +32,7 @@ rsa==4.7
 setuptools==84.1.0
 six==1.13.0
 update-checker==0.16
-urllib3==2.7.0
+urllib3==2.8.0
 websocket-client==0.57.0
 wheel==0.38.1
 wincertstore==0.2
