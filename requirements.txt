@@ -17,7 +17,7 @@ pip==26.2
 prawcore==1.0.1
 protobuf==5.29.6
 protobuf3-to-dict==0.1.5
-pyasn1==0.6.4
+pyasn1==0.6.5
 pyasn1-modules==0.2.7
 PyAutoGUI==0.9.48
 PyGetWindow==0.0.8
